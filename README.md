@@ -103,7 +103,7 @@ python app.py
 ## 📝 License
 This project is licensed under the [MIT License](LICENSE).
 
-Copyright (c) 2026 [Rockyan-2006]
+Copyright (c) 2026 Rockyan-2006
 
 * 本项目现阶段侧重于功能的开发，项目已取得 **“天池杯”AI先锋亚军**的成绩，持续完善中。
 * 项目下一阶段将进入批量收集农业数据与规模化验证阶段，在实际农业数据中完成验证与完善。
