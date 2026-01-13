@@ -25,7 +25,7 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 # 从环境变量安全获取API Key
 api_key = os.getenv("DASHSCOPE_API_KEY")
 if not api_key:
-    raise ValueError("错误：未找到 DASHSCOPE_API_KEY 环境变量。请配置后重启。")
+    raise ValueError("出现错误！没有能找到 DASHSCOPE_API_KEY 环境变量呢。麻烦您配置后重启。")
 dashscope.api_key = api_key
 
 
@@ -33,9 +33,9 @@ try:
     df_variety = pd.read_excel('database/1. 基础品种信息表.xlsx')
     df_disease = pd.read_excel('database/2. 病害特征表.xlsx')
     df_nutrient = pd.read_excel('database/3. 营养缺乏症状表.xlsx')
-    print("所有Excel知识库加载成功！")
+    print("所有知识库加载成功！")
 except FileNotFoundError as e:
-    print(f"警告：数据库文件未找到 - {e}。知识库相关功能将受限。")
+    print(f"抱歉，好像出现错误！没能找到数据库文件 - {e}。知识库相关功能将受限。")
     df_variety, df_disease, df_nutrient = pd.DataFrame(), pd.DataFrame(), pd.DataFrame()
 
 
@@ -48,13 +48,13 @@ def call_text_model(prompt, model_name='qwen-plus', temperature=0.7):
             return response.output.choices[0].message.content
         else:
             print(f"API调用失败: Code: {response.code}, Message: {response.message}")
-            return f"抱歉，AI模型调用失败 (模型: {model_name})。错误信息: {response.message}"
+            return f"很抱歉，AI模型调用失败 (模型: {model_name})。错误信息: {response.message}"
     except Exception as e:
         print(f"网络或API异常: {e}")
-        return f"抱歉，与AI大脑连接时发生网络或API异常: {e}"
+        return f"很抱歉，连接时发生网络或API异常: {e}"
 
 def call_image_model(prompt, model_name='wanx-v1'):
-    """专门调用通义万相文生图模型"""
+    """调用通义万相文生图模型"""
     if not prompt:
         return None
     try:
@@ -80,7 +80,7 @@ def extract_json_from_text(text):
         except json.JSONDecodeError:
             print(f"JSON块解析失败: {json_str}")
             return None
-    # 如果没匹配到，尝试直接解析整个文本
+    # 要是没匹配到，就尝试直接解析整个文本
     try:
         return json.loads(text)
     except json.JSONDecodeError:
@@ -90,10 +90,10 @@ def extract_json_from_text(text):
 
 def call_vl_model(prompt, local_image_path):
     """
-    专门调用通义千问VL多模态模型 (V4 - 修正返回格式)
+    调用通义千问VL多模态模型 
     """
     if not local_image_path or not os.path.exists(local_image_path):
-        return "错误：需要图片但未收到有效的图片文件路径。"
+        return "糟糕，好像出错了。系统没有收到有效的图片文件路径呢，请麻烦您再次检查图片是否上传成功。"
     
     image_url_for_sdk = f"file://{os.path.abspath(local_image_path)}"
     
@@ -115,7 +115,7 @@ def call_vl_model(prompt, local_image_path):
         else:
             return f"调用多模态模型失败: Code: {response.code}, Message: {response.message}"
     except Exception as e:
-        return f"与多模态AI连接时发生严重错误: {e}"
+        return f"很抱歉，与多模态AI连接时发生错误: {e}"
 
 def run_workflow_A(context):
     """Part A: 种植决策 (V5 - 标准化参数与记忆清空逻辑)"""
@@ -197,7 +197,6 @@ User: 请对以上报告进行组合分析，并给出最终的种植建议。
     crops_data = extract_json_from_text(crops_str)
     
     if crops_data and 'recommended_crops' in crops_data:
-        # 使用标准化的参数名写入context
         context['recommended_crops'] = crops_data['recommended_crops']
       
         if crops_data['recommended_crops']:
