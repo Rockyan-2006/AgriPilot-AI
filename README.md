@@ -35,8 +35,7 @@
 *   阿里云 DashScope API Key
 
 ### 2. 配置 API Key
-
-本项目使用阿里云 DashScope 服务。**必须**设置环境变量 `DASHSCOPE_API_KEY`。
+*   本项目使用阿里云 DashScope 服务。**必须**设置环境变量 `DASHSCOPE_API_KEY`。
 ---
 
 ## 📂 项目结构
@@ -80,8 +79,8 @@ python app.py
     *   http://127.0.0.1:5000/
 
 ### 方法二：快速运行
-双击运行 setup_and_run.cmd，即可快速打开系统窗口
-（注意：请注意弹出窗口时，点击同意以打开必要权限）
+1.  双击运行 setup_and_run.cmd，即可快速打开系统窗口
+    * 注意：请注意弹出窗口时，点击同意以打开必要权限
 ---
 
 ## ⚠️ 注意事项与模型说明
@@ -100,4 +99,3 @@ python app.py
 本项目仅供学习与研究使用。
 体验可用账号：zhangyan
 体验可用密码：zy@2025
-```
