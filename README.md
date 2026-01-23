@@ -40,7 +40,7 @@
 *   本项目使用阿里云 DashScope 服务。**必须**设置环境变量 `DASHSCOPE_API_KEY`。
 ---
 
-##  📂项目结构
+##  项目结构
 
 ```text
 .
@@ -63,7 +63,7 @@
 
 ---
 
-##  🖥️运行项目
+##  运行项目
 网站尚在测试阶段。
 * 体验可用账号：zhangyan 
 * 体验可用密码：zy@2025
@@ -88,7 +88,7 @@ python app.py
     * 注意：请注意弹出窗口时，点击同意以打开必要权限
 ---
 
-##  ⚠️注意事项与模型说明
+##  注意事项与模型说明
 
 *   **Session 管理**：为了模拟多轮对话记忆，使用了 Flask Session。
     **刷新 `/main` 页面会清空当前会话记忆**，请注意保存重要信息。
@@ -100,7 +100,7 @@ python app.py
 
 ---
 
-## 📝 License
+##  License
 This project is licensed under the [MIT License](LICENSE).
 
 Copyright (c) 2026 Rockyan-2006
